@@ -20,7 +20,7 @@ En este juego, debes gestionar tu población, recolectar recursos, aprender nuev
 Si aún no has clonado el repositorio, usa:
 
 ```sh
- git clone https://github.com/oscaralfonso93/mi-juego-python.git
+ git clone https://github.com/ixamy/mi-juego-python.git
  cd mi-juego-python
 ```
 
