@@ -14,7 +14,7 @@ class DecisionManager:
             _, habilidad = partes
             self.habilidades.aprender(habilidad, self.eventos)
 
-        # 📌 Asignar una habilidad a una persona
+        # 📌 Asignar una habilidad a un forji
         elif decision.startswith("asignar"):
             if len(partes) == 2:
                 _, habilidad = partes
