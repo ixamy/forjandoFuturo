@@ -41,6 +41,7 @@ class DecisionManager:
         # 📌 Ver la población
         elif decision == "poblacion":
             self.poblacion.mostrar_poblacion()
+            input("...")
 
         # 📌 Acción no válida
         else:
