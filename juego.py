@@ -44,7 +44,7 @@ class JuegoSupervivencia:
         print(self.localizacion.get("welcome"))
         while not self.epoca.ha_alcanzado_final():
             self.mostrar_estado()
-            decision = input(f"{self.localizacion.get("prompt")} ").lower()
+            decision = input(f"{self.localizacion.get('prompt')} ").lower()
             if decision == "salir":
                 print(self.localizacion.get("goodbye"))
                 break

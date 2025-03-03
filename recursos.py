@@ -16,7 +16,7 @@ class RecursoManager:
         self.localizacion = localizacion
 
     def mostrar(self):
-        print(f"{self.localizacion.get("resources")}:")
+        print(f"{self.localizacion.get('resources')}:")
         for k, v in self.recursos.items():
             print(f"   - {self.obtener_nombre_mostrable(k)}: {v}")
 

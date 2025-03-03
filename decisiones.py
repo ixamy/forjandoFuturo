@@ -23,19 +23,19 @@ class DecisionManager:
                 _, nombre, habilidad = partes
                 mensaje = self.poblacion.asignar_habilidad(habilidad, self.habilidades, nombre)
             else:
-                mensaje = self.localizacion.get("assign_error")
+                mensaje = self.localizacion.get('assign_error')
 
             self.eventos.registrar(mensaje)
 
         # 📌 Usar habilidades como "cazar" y "talar"
         elif decision in ["cazar", "talar"]:
             if not self.habilidades.esta_aprendida(decision):
-                self.eventos.registrar(self.localizacion.get("not_learned_general", skill=decision))
+                self.eventos.registrar(self.localizacion.get('not_learned_general', skill=decision))
             elif not self.poblacion.alguien_sabe(decision):
-                self.eventos.registrar(self.localizacion.get("not_assigned", skill=decision))
+                self.eventos.registrar(self.localizacion.get('not_assigned', skill=decision))
             else:
                 recurso = "comida" if decision == "cazar" else "madera"
-                mensaje = self.localizacion.get("action_success", action=decision)
+                mensaje = self.localizacion.get('action_success', action=decision)
                 self.recursos.actualizar(recurso, 10, mensaje, self.eventos)
 
         # 📌 Ver la población
@@ -44,4 +44,4 @@ class DecisionManager:
 
         # 📌 Acción no válida
         else:
-            self.eventos.registrar(self.localizacion.get("invalid_action"))
+            self.eventos.registrar(self.localizacion.get('invalid_action'))

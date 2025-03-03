@@ -39,6 +39,6 @@ class EpocaManager:
         ):
             self.indice_epoca += 1
             self.nueva_epoca = True
-            self.eventos.registrar(self.localizacion.get("epoch_advance", epoch=self.obtener_epoca()))
+            self.eventos.registrar(self.localizacion.get('epoch_advance', epoch=self.obtener_epoca()))
         else:
-            self.eventos.registrar(self.localizacion.get("cant_advance"))
+            self.eventos.registrar(self.localizacion.get('cant_advance'))

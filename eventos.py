@@ -9,6 +9,6 @@ class EventoManager:
             self.eventos.pop(0)
 
     def mostrar(self):
-        print(f"{self.localizacion.get("events")}:")
+        print(f"{self.localizacion.get('events')}:")
         for evento in self.eventos[-10:]:
             print(f"   - {evento}")

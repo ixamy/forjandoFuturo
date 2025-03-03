@@ -17,10 +17,10 @@ class Persona:
                 return "confirmar_cambio"
             habilidad_anterior = self.habilidad
             self.habilidad = nueva_habilidad
-            return self.localizacion.get("skill_replaced", name=self.nombre, old_skill=habilidad_anterior, new_skill=nueva_habilidad)
+            return self.localizacion.get('skill_replaced', name=self.nombre, old_skill=habilidad_anterior, new_skill=nueva_habilidad)
         
         self.habilidad = nueva_habilidad
-        return self.localizacion.get("skill_learned", name=self.nombre, skill=nueva_habilidad)
+        return self.localizacion.get('skill_learned', name=self.nombre, skill=nueva_habilidad)
 
     def __str__(self):
         habilidad_str = self.habilidad if self.habilidad else "Ninguna"
@@ -57,7 +57,7 @@ class PoblacionManager:
         self.poblacion.append(persona)
 
     def mostrar_poblacion(self):
-        print(self.localizacion.get("population_overview"))
+        print(self.localizacion.get('population_overview'))
         for persona in self.poblacion:
             print(f"   - {persona}")
 
@@ -68,16 +68,16 @@ class PoblacionManager:
     def asignar_habilidad(self, habilidad, habilidades, nombre=None, confirmacion=False):
         """ Asigna una habilidad a una persona, pero solo si ha sido aprendida globalmente. """
         if not habilidades.esta_aprendida(habilidad):
-            return self.localizacion.get("not_learned_general", skill=habilidad)
+            return self.localizacion.get('not_learned_general', skill=habilidad)
 
         if nombre:
             persona = self.encontrar_persona(nombre)
             if persona:
                 resultado = persona.asignar_habilidad(habilidad, confirmacion)
                 if resultado == "confirmar_cambio":
-                    return self.localizacion.get("confirm_skill_change", name=nombre, old_skill=persona.habilidad, new_skill=habilidad)
+                    return self.localizacion.get('confirm_skill_change', name=nombre, old_skill=persona.habilidad, new_skill=habilidad)
                 return resultado
-            return self.localizacion.get("person_not_found", name=nombre)
+            return self.localizacion.get('person_not_found', name=nombre)
         
         # Si no se especificó nombre, buscar una persona sin habilidad
         personas_sin_habilidad = [p for p in self.poblacion if not p.habilidad]
@@ -85,7 +85,7 @@ class PoblacionManager:
             persona = random.choice(personas_sin_habilidad)
             return persona.asignar_habilidad(habilidad)
 
-        return self.localizacion.get("no_available_people")
+        return self.localizacion.get('no_available_people')
     
     def encontrar_persona(self, nombre):
         """ Busca una persona por su nombre en la población. """
