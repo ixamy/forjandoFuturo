@@ -1,15 +1,23 @@
 class DecisionManager:
-    def __init__(self, recursos, poblacion, habilidades, eventos, localizacion):
+    def __init__(self, recursos, poblacion, habilidades, eventos, localizacion, epoca):
         self.recursos = recursos
         self.poblacion = poblacion
         self.habilidades = habilidades
         self.eventos = eventos
         self.localizacion = localizacion
+        self.epoca = epoca
 
     def procesar(self, decision):
         partes = decision.split()
 
-        if len(partes) == 2 and partes[0] == "aprender":
+        if decision == "salir":
+            print(self.localizacion.get("goodbye"))
+            exit()
+        
+        elif decision == "avanzar":
+            self.epoca.avanzar()
+            
+        elif len(partes) == 2 and partes[0] == "aprender":
             _, habilidad = partes
             self.habilidades.aprender(habilidad, self.eventos)
 

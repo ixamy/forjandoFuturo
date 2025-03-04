@@ -17,7 +17,7 @@ class JuegoSupervivencia:
         
         self.epoca = EpocaManager(self.recursos, self.poblacion, self.habilidades, self.eventos, self.localizacion)
         
-        self.decision_manager = DecisionManager(self.recursos, self.poblacion, self.habilidades, self.eventos, self.localizacion)
+        self.decision_manager = DecisionManager(self.recursos, self.poblacion, self.habilidades, self.eventos, self.localizacion, self.epoca)
 
     def mostrar_estado(self):
         limpiar_pantalla()
@@ -44,13 +44,13 @@ class JuegoSupervivencia:
         while not self.epoca.ha_alcanzado_final():
             self.mostrar_estado()
             decision = input(f"{self.localizacion.get('prompt')} ").lower()
-            if decision == "salir":
-                print(self.localizacion.get("goodbye"))
-                break
-            elif decision == "avanzar":
-                self.epoca.avanzar()
-            else:
-                self.decision_manager.procesar(decision)
+            #if decision == "salir":
+            #    print(self.localizacion.get("goodbye"))
+            #    break
+            #elif decision == "avanzar":
+            #    self.epoca.avanzar()
+            #else:
+            self.decision_manager.procesar(decision)
 
         if self.epoca.ha_alcanzado_final():
             print(self.localizacion.get("win"))
