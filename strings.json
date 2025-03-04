@@ -10,6 +10,7 @@
     "learn_skill": "Aprendiste a {skill}",
     "already_knows": "Ya sabes {skill}",
     "invalid_action": "❌ Esa acción no es válida",
+    "invalid_resource": "❌ Recurso no válido",
     "not_learned": "No sabes {skill} aún, aprende la habilidad primero",
     "hunt_success": "Obtienes carne cazando",
     "chop_success": "Obtienes madera talando árboles",
@@ -17,6 +18,8 @@
     "win": "🎉 ¡Has llegado a la Edad Media y evolucionado tu civilización!",
     "comida": "Comida",
     "madera": "Madera",
+    "piedra": "Piedra",
+    "flores": "Flores",
     "population_overview": "👥 Población actual:",
     "learned_skill": "{name} ha aprendido {skill}",
     "already_knows_skill": "{name} ya sabe {skill}",
@@ -37,7 +40,16 @@
     "already_in_final_epoch": "🎉 Ya has alcanzado la última época.",
 	"too_young_to_learn": "❌ {self.nombre} es demasiado joven para aprender habilidades.",
 	"skill_replaced": "🔄 {name} olvidó {old_skill} y aprendió {new_skill}",
-	"skill_learned": "✅ {name} ha aprendido {skill}"
+	"skill_learned": "✅ {name} ha aprendido {skill}",
+	"knowledge_gain_success": "📚 {name} ha aumentado en {percentage}% su conocimiento sobre {skill}.",
+	"unknown": "Desconocido",
+    "invalid_resource_action": "No se puede realizar {action}, ya que no hay recursos disponibles.",
+    "invalid_resource": "❌ {resource} no es un recurso válido.",
+	"mensaje_error": "Error",
+	"forjis_nombres": "No se encontró forjis_nombres.json",
+	"text_age": "Edad",
+	"text_skill": "Habilidad",
+	"text_none": "Ninguna"
   },
   "en": {
     "prompt": "⚡",
@@ -50,6 +62,7 @@
     "learn_skill": "You learned {skill}",
     "already_knows": "You already know {skill}",
     "invalid_action": "❌ That action is not valid",
+	"invalid_resource": "❌ Invalid resource",
     "not_learned": "You haven't learned {skill} yet, learn it first",
     "hunt_success": "You obtained meat by hunting",
     "chop_success": "You obtained wood by chopping trees",
@@ -57,6 +70,8 @@
     "win": "🎉 You have reached the Middle Ages and evolved your civilization!",
     "comida": "Food",
     "madera": "Wood",
+	"piedra": "Stone",
+	"flores": "Flowers",
     "population_overview": "👥 Current population:",
     "learned_skill": "{name} has learned {skill}",
     "already_knows_skill": "{name} already knows {skill}",
@@ -77,6 +92,15 @@
     "already_in_final_epoch": "🎉 You have already reached the final era.",
 	"too_young_to_learn": "❌ {self.nombre} it's too young to learn.",
 	"skill_replaced": "🔄 {name} forgot {old_skill} and learned {new_skill}",
-	"skill_learned": "✅ {name} has learned {skill}"
+	"skill_learned": "✅ {name} has learned {skill}",
+	"knowledge_gain_success": "📚 {name} has increased their knowledge of {skill} by {percentage}%.",
+	"unknown": "Unknown",
+    "invalid_resource_action": "No se puede realizar {action}, ya que no hay recursos disponibles.",
+    "invalid_resource": "❌ {resource} no es un recurso válido.",
+	"mensaje_error": "Error",
+	"forjis_nombres": "forjis_nombres.json not found",
+	"text_age": "Age",
+	"text_skill": "Skill",
+	"text_none": "None"
   }
 }

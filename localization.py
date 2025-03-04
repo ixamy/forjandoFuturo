@@ -11,12 +11,11 @@ class Localization:
                 data = json.load(file)
                 return data.get(self.language, {})
         except FileNotFoundError:
-            print("❌ Error: No se encontró el archivo de localización 'strings.json'.")
             return {}
 
     def get(self, key, **kwargs):
         """ Obtiene un string traducido con soporte para reemplazar valores dinámicos """
-        text = self.strings.get(key, f"❌ {key} no encontrado")
+        text = self.strings.get(key, f"String for {key} not found")
         return text.format(**kwargs)
 
     def set_language(self, language):

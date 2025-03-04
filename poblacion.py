@@ -6,9 +6,10 @@ class Forji:
     def __init__(self, nombre, edad, genero, localizacion, habilidad=None):
         self.nombre = nombre
         self.edad = edad
-        self.genero = genero  # Puede ser "masculino", "femenino"
-        self.habilidad = habilidad  # Solo puede tener una
-        self.localizacion = localizacion  # 📌 Agregado
+        self.genero = genero
+        self.habilidad = habilidad 
+        self.localizacion = localizacion
+        self.conocimientos = {}
 
     def asignar_habilidad(self, nueva_habilidad, confirmacion=False):
         """ Asigna una habilidad, pero si ya tiene una, solicita confirmación para reemplazarla. """
@@ -17,14 +18,25 @@ class Forji:
                 return "confirmar_cambio"
             habilidad_anterior = self.habilidad
             self.habilidad = nueva_habilidad
+            self.conocimientos[nueva_habilidad] = 5
             return self.localizacion.get('skill_replaced', name=self.nombre, old_skill=habilidad_anterior, new_skill=nueva_habilidad)
         
         self.habilidad = nueva_habilidad
+        self.conocimientos[nueva_habilidad] = 5
         return self.localizacion.get('skill_learned', name=self.nombre, skill=nueva_habilidad)
-
+    
+    def incrementar_conocimiento(self, habilidad, incremento):
+        """ Aumenta el conocimiento de una habilidad de manera progresiva. """
+        if habilidad in self.conocimientos:
+            self.conocimientos[habilidad] = min(100, self.conocimientos[habilidad] + incremento)
+        else:
+            self.conocimientos[habilidad] = 5 + incremento
+        return self.conocimientos[habilidad]
+    
     def __str__(self):
-        habilidad_str = self.habilidad if self.habilidad else "Ninguna"
-        return f"{self.nombre} (Edad: {self.edad}) – Habilidad: {habilidad_str}"
+        habilidad_str = self.habilidad if self.habilidad else self.localizacion.get('text_none')
+        conocimiento_str = f" ({self.conocimientos.get(self.habilidad, 0)}%)" if self.habilidad else ""
+        return f"{self.nombre} ({self.localizacion.get('text_age')}: {self.edad}) – {self.localizacion.get('text_skill')}: {habilidad_str}{conocimiento_str}"
 
 class PoblacionManager:
     def __init__(self, localizacion):
@@ -41,8 +53,8 @@ class PoblacionManager:
                 data = json.load(file)
                 return data.get("nombres", [])
         except FileNotFoundError:
-            print("❌ Error: No se encontró forjis_nombres.json")
-            return ["Forji1", "Forji2", "Forji3"]  # Nombres por defecto en caso de error
+            print(self.localizacion.get('forjis_nombres'))
+            return ["Forji1", "Forji2", "Forji3"]
 
     def inicializar_poblacion(self):
         cantidad = random.randint(2, 4)

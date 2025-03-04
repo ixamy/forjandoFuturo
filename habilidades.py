@@ -1,14 +1,11 @@
 class HabilidadManager:
     def __init__(self, localizacion):
-        self.habilidades_aprendidas = []  # Lista de habilidades desbloqueadas
+        self.habilidades_aprendidas = []
         self.localizacion = localizacion
 
     def mostrar(self):
         """ Muestra las habilidades aprendidas globalmente. """
-        if self.habilidades_aprendidas:
-            habilidades_str = ", ".join(self.habilidades_aprendidas)
-        else:
-            habilidades_str = self.localizacion.get('no_skills')
+        habilidades_str = ", ".join(self.habilidades_aprendidas) if self.habilidades_aprendidas else self.localizacion.get('no_skills')
         print(f"{self.localizacion.get('skills')}: {habilidades_str}")
 
     def aprender(self, habilidad, evento_manager):

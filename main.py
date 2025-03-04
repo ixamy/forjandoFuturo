@@ -6,6 +6,5 @@ if __name__ == "__main__":
         juego = JuegoSupervivencia()
         juego.jugar()
     except Exception as e:
-        print("\n❌ ERROR DETECTADO: El juego ha fallado con el siguiente error:\n")
-        traceback.print_exc()  # Muestra detalles del error
-        input("\nPresiona Enter para salir...")
+        traceback.print_exc()
+        input("\n...")

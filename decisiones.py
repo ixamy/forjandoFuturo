@@ -9,12 +9,10 @@ class DecisionManager:
     def procesar(self, decision):
         partes = decision.split()
 
-        # 📌 Aprender una habilidad globalmente
         if len(partes) == 2 and partes[0] == "aprender":
             _, habilidad = partes
             self.habilidades.aprender(habilidad, self.eventos)
 
-        # 📌 Asignar una habilidad a un forji
         elif decision.startswith("asignar"):
             if len(partes) == 2:
                 _, habilidad = partes
@@ -27,22 +25,39 @@ class DecisionManager:
 
             self.eventos.registrar(mensaje)
 
-        # 📌 Usar habilidades como "cazar" y "talar"
-        elif decision in ["cazar", "talar"]:
-            if not self.habilidades.esta_aprendida(decision):
-                self.eventos.registrar(self.localizacion.get('not_learned_general', skill=decision))
-            elif not self.poblacion.alguien_sabe(decision):
+        elif decision in self.habilidades.habilidades_aprendidas:
+            if not self.poblacion.alguien_sabe(decision):
                 self.eventos.registrar(self.localizacion.get('not_assigned', skill=decision))
-            else:
-                recurso = "comida" if decision == "cazar" else "madera"
-                mensaje = self.localizacion.get('action_success', action=decision)
-                self.recursos.actualizar(recurso, 10, mensaje, self.eventos)
+                return
 
-        # 📌 Ver la población
+            for forji in self.poblacion.poblacion:
+                if forji.habilidad == decision:
+                    conocimiento_anterior = forji.conocimientos.get(decision, 0)
+                    forji.incrementar_conocimiento(decision, 10)
+                    incremento = forji.conocimientos[decision] - conocimiento_anterior
+
+                    recursos = self.recursos.obtener_recurso_por_decision(decision)
+
+                    if not recursos:
+                        mensaje_error = self.localizacion.get('invalid_resource_action', action=decision)
+                        self.eventos.registrar({mensaje_error})
+                        return
+                    
+                    mensaje = self.localizacion.get('action_success', action=decision)
+                    self.eventos.registrar(
+                        self.localizacion.get('knowledge_gain_success', name=forji.nombre, percentage=incremento, skill=decision)
+                    )
+
+                    for recurso in recursos:  
+                        if recurso not in self.recursos.recursos:
+                            mensaje_error = self.localizacion.get('invalid_resource', resource=recurso)
+                            self.eventos.registrar({mensaje_error})
+                        else:
+                            self.recursos.actualizar(recurso, 0, mensaje, self.eventos)
+
         elif decision == "poblacion":
             self.poblacion.mostrar_poblacion()
             input("...")
 
-        # 📌 Acción no válida
         else:
             self.eventos.registrar(self.localizacion.get('invalid_action'))

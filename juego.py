@@ -15,7 +15,6 @@ class JuegoSupervivencia:
         self.poblacion = PoblacionManager(self.localizacion)
         self.habilidades = HabilidadManager(self.localizacion)
         
-        # 📌 Corregido: ahora pasamos `self.poblacion` también
         self.epoca = EpocaManager(self.recursos, self.poblacion, self.habilidades, self.eventos, self.localizacion)
         
         self.decision_manager = DecisionManager(self.recursos, self.poblacion, self.habilidades, self.eventos, self.localizacion)
